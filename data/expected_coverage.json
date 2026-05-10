@@ -1,0 +1,33 @@
+{
+  "required_negative_scenarios": [
+    "missing firstname",
+    "missing lastname",
+    "invalid totalprice",
+    "missing bookingdates",
+    "checkout before checkin"
+  ],
+  "known_supported_terms": [
+    "firstname",
+    "lastname",
+    "totalprice",
+    "depositpaid",
+    "bookingdates",
+    "checkin",
+    "checkout",
+    "additionalneeds",
+    "POST /booking"
+  ],
+  "unsupported_terms": [
+    "expired authentication token",
+    "payment status",
+    "coupon code",
+    "user role"
+  ],
+  "quality_thresholds": {
+    "groundedness": 0.8,
+    "coverage": 0.6,
+    "hallucination_risk": 0.25,
+    "bdd_syntax_validity": 0.9,
+    "automation_readiness": 0.75
+  }
+}

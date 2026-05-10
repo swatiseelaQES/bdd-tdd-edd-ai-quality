@@ -1,0 +1,32 @@
+name: BDD TDD EDD Quality Checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  quality-checks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run executable BDD scenarios
+        run: behave
+
+      - name: Run deterministic pytest API tests
+        run: pytest tests/test_booking_api.py
+
+      - name: Run EDD quality gate
+        run: pytest tests/test_edd_quality_gate.py
+
+      - name: Generate EDD report
+        run: python src/evaluate_bdd_output.py
